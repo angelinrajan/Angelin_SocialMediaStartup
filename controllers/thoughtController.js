@@ -1,43 +1,43 @@
-const User = require('../models/User');
+const thought = require('../models/thought');
 
 module.exports = {
-  async getAllUsers(req, res) {
+  async getAllThoughts(req, res) {
     try {
-      const users = await User.find();
-      res.json(users);
+      const thoughts = await thought.find();
+      res.json(thoughts);
     } catch (err) {
       res.status(500).json(err)
     }
   },
-  async getUserById(req, res) {
+  async getThoughtById(req, res) {
     try {
-      const user = await User.findOne({ _id: req.params.userId });
+      const thoughts = await thought.findOne({ _id: req.params.thoughtId });
 
-      if (!user) {
-        return res.status(404).json({ message: 'No user with that ID' });
+      if (!thoughts) {
+        return res.status(404).json({ message: 'No thought with that ID' });
       }
 
-      res.json(user);
+      res.json(thoughts);
     } catch (err) {
       res.status(500).json(err);
     }
   },
 // create a new user
-  async createUser(req, res) {
+  async createThought(req, res) {
     try {
-      const dbUserData = await User.create(req.body);
+      const dbUserData = await thought.create(req.body);
       res.json(dbUserData);
     } catch (err) {
       res.status(500).json(err);
     }
   },
 
-  async deleteUser(req, res) {
+  async deleteThought(req, res) {
     // Wrap the id in the ObjectId class to instantiate a new instance
     //const userID = new ObjectId(req.param.id);
   
     // Use deleteOne() to delete one object
-   User.findOneAndDelete(
+    thought.findOneAndDelete(
       // This is the filter. We delete only the document that matches the _id provided in the request body.
       { _id: req.params.userId }
     )
@@ -53,12 +53,12 @@ module.exports = {
       });
     },
 
-    async updateUser(req, res) {
+    async updateThought(req, res) {
       // Wrap the id in the ObjectId class to instantiate a new instance
       //const userID = new ObjectId(req.param.id);
     
       // Use deleteOne() to delete one object
-     User.findOneAndUpdate(
+      thought.findOneAndUpdate(
         // This is the filter. We delete only the document that matches the _id provided in the request body.
         { _id: req.params.userId },
         {$set:req.body},
@@ -76,12 +76,12 @@ module.exports = {
         });
       },
 
-      async addFriend(req, res) {
+      async addReaction(req, res) {
         // Wrap the id in the ObjectId class to instantiate a new instance
         //const userID = new ObjectId(req.param.id);
       
         // Use deleteOne() to delete one object
-       User.findOneAndUpdate(
+        thought.findOneAndUpdate(
           // This is the filter. We delete only the document that matches the _id provided in the request body.
           { _id: req.params.userId },
           {$push:{friends:req.params.friendId}},
@@ -100,12 +100,12 @@ module.exports = {
         },
 
 
-        async removeFriend(req, res) {
+        async removeReaction(req, res) {
           // Wrap the id in the ObjectId class to instantiate a new instance
           //const userID = new ObjectId(req.param.id);
         
           // Use deleteOne() to delete one object
-         User.findOneAndUpdate(
+          thought.findOneAndUpdate(
             // This is the filter. We delete only the document that matches the _id provided in the request body.
             { _id: req.params.userId },
             {$pull:{friends:req.params.friendId}},
@@ -123,4 +123,3 @@ module.exports = {
             });
           }
 };
-

@@ -1,4 +1,4 @@
-const {Schema, model} = require('mongoose');
+const {Schema, Types} = require('mongoose');
 
 const reactionSchema = new Schema ({
     reactionId: {
@@ -20,4 +20,4 @@ const reactionSchema = new Schema ({
     }
 });
 
-module.export = reactionSchema;
+module.exports = reactionSchema;
