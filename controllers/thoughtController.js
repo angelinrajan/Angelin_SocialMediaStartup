@@ -39,7 +39,7 @@ module.exports = {
     // Use deleteOne() to delete one object
     thought.findOneAndDelete(
       // This is the filter. We delete only the document that matches the _id provided in the request body.
-      { _id: req.params.userId }
+      { _id: req.params.thoughtId }
     )
       .then(results => {
         console.log(results);
@@ -60,7 +60,7 @@ module.exports = {
       // Use deleteOne() to delete one object
       thought.findOneAndUpdate(
         // This is the filter. We delete only the document that matches the _id provided in the request body.
-        { _id: req.params.userId },
+        { _id: req.params.thoughtId },
         {$set:req.body},
         {new:true, runValidators:true}
       )
