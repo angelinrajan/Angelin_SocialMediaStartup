@@ -39,3 +39,4 @@ This project is a demonstration of building an API for a social network web appl
 
 ## Video Walkthrough
 Watch the video walkthrough demonstrating the functionality and how the acceptance criteria are met: [Link to Video Walkthrough](<video src="assets/Angelin_SocialMediaStartupWalkThrough.mp4" controls title="Angelin_SocialMediaWalkThough"></video>)
+May need to download the mp4 video to enable audio from the assets folder. Also, Attached is a link incase the demo mp4 does not work https://clipchamp.com/watch/lmYe5EEXlxD
