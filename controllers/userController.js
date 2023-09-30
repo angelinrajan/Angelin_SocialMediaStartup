@@ -33,7 +33,10 @@ module.exports = {
   },
 
   async deleteUser(req, res) {
-
+    // Wrap the id in the ObjectId class to instantiate a new instance
+    //const userID = new ObjectId(req.param.id);
+  
+    // Use deleteOne() to delete one object
    User.findOneAndDelete(
       // This is the filter. We delete only the document that matches the _id provided in the request body.
       { _id: req.params.userId }
