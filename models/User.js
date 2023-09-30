@@ -33,19 +33,14 @@ const userSchema = new Schema({
 //   }
 // );
 
-// Create a virtual property `commentCount` that gets the amount of comments per user
+// Create a virtual property `friendCount` that gets the amount of comments per user
 userSchema
   .virtual('friendCount')
   // Getter
   .get(function () {
     return `Total Friends ${this.friends.length}`;
   });
-  // Setter to set the first and last name
-//   .set(function (v) {
-//     const first = v.split(' ')[0];
-//     const last = v.split(' ')[1];
-//     this.set({ first, last });
-//   });
+
 
 // Initialize our User model
 const User = model('user', userSchema);

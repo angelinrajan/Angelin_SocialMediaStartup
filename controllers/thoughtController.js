@@ -33,10 +33,7 @@ module.exports = {
   },
 
   async deleteThought(req, res) {
-    // Wrap the id in the ObjectId class to instantiate a new instance
-    //const userID = new ObjectId(req.param.id);
-  
-    // Use deleteOne() to delete one object
+    
     thought.findOneAndDelete(
       // This is the filter. We delete only the document that matches the _id provided in the request body.
       { _id: req.params.thoughtId }
@@ -54,10 +51,7 @@ module.exports = {
     },
 
     async updateThought(req, res) {
-      // Wrap the id in the ObjectId class to instantiate a new instance
-      //const userID = new ObjectId(req.param.id);
-    
-      // Use deleteOne() to delete one object
+      
       thought.findOneAndUpdate(
         // This is the filter. We delete only the document that matches the _id provided in the request body.
         { _id: req.params.thoughtId },
@@ -77,14 +71,11 @@ module.exports = {
       },
 
       async addReaction(req, res) {
-        // Wrap the id in the ObjectId class to instantiate a new instance
-        //const userID = new ObjectId(req.param.id);
-      
-        // Use deleteOne() to delete one object
+
         thought.findOneAndUpdate(
           // This is the filter. We delete only the document that matches the _id provided in the request body.
-          { _id: req.params.userId },
-          {$push:{friends:req.params.friendId}},
+          { _id: req.params.thoughtId },
+         {$push: {reactions: req.body}},
           {new:true, runValidators:true}
         )
           .then(results => {
@@ -101,14 +92,11 @@ module.exports = {
 
 
         async removeReaction(req, res) {
-          // Wrap the id in the ObjectId class to instantiate a new instance
-          //const userID = new ObjectId(req.param.id);
-        
-          // Use deleteOne() to delete one object
+         
           thought.findOneAndUpdate(
             // This is the filter. We delete only the document that matches the _id provided in the request body.
-            { _id: req.params.userId },
-            {$pull:{friends:req.params.friendId}},
+            { _id: req.params.thoughtId },
+            {$pull:{reactions: req.body}},
             {new:true, runValidators:true}
           )
             .then(results => {
